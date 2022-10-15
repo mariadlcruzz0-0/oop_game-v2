@@ -6,8 +6,7 @@ class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     }
-
-    //Functions
+    //Function that displays letters on the screen
     addPhraseToDisplay(){
         const _phrase = document.getElementById('phrase');
         let _ul = _phrase.querySelector('ul');
@@ -23,11 +22,10 @@ class Phrase {
         }
     }
     /**
-     * checkLetter returns true or false depending on whether the letter is included
+     * checkLetter returns boolean depending on whether the letter is included in the phrase
      * @param {string} letter 
      * @returns {Boolean}
      */
-
     checkLetter(letter) {
         if (this.phrase.includes(letter)) {
             return true;
