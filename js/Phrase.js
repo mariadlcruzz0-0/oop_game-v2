@@ -6,7 +6,7 @@ class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
     }
-    //Function that displays letters on the screen
+    //Displays letters on the screen
     addPhraseToDisplay(){
         const _phrase = document.getElementById('phrase');
         let _ul = _phrase.querySelector('ul');
@@ -22,9 +22,9 @@ class Phrase {
         }
     }
     /**
-     * checkLetter returns boolean depending on whether the letter is included in the phrase
+     * checks if the letter matches the phrase.
      * @param {string} letter 
-     * @returns {Boolean}
+     * @returns {Boolean} depending on whether the letter is included in the phrase.
      */
     checkLetter(letter) {
         if (this.phrase.includes(letter)) {
@@ -34,7 +34,7 @@ class Phrase {
         }
     }
     /**
-     * 
+     * Shows the letter on the board that matches the player's selection
      */
     showMatchedLetter(letter){
         let matchLetters = document.getElementsByClassName(letter);

@@ -24,7 +24,7 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
     /**
-     * Selects random phrase
+     * Selects random phrase from the phrases array
      */
     getRandomPhrase() {
         const index = Math.floor(Math.random() * this.phrases.length);
@@ -36,7 +36,7 @@ class Game {
     handleInteraction(button) {
         button.disabled = true;
         let match = this.activePhrase.checkLetter(button.textContent);
-        
+
         if (match) {
             button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(button.textContent);
@@ -51,7 +51,7 @@ class Game {
         }
     }
     /**
-     * 
+     * Removes a heart if user guesses the wrong letter
      */
     removeLife() {}
     /**
@@ -63,7 +63,7 @@ class Game {
         //if(){}
     }
     /**
-     * 
+     * Ends the game
      */
     gameOver() {}
 }
