@@ -35,9 +35,9 @@ class Game {
      */
     handleInteraction(button) {
         button.disabled = true;
-        let match = this.activePhrase.checkLetter(button.textContent);
+        let matchedLetter = this.activePhrase.checkLetter(button.textContent);
 
-        if (match) {
+        if (matchedLetter) {
             button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(button.textContent);
             this.checkForWin();
@@ -53,12 +53,21 @@ class Game {
     /**
      * Removes a heart if user guesses the wrong letter
      */
-    removeLife() {}
+    removeLife() {
+        const _heart = document.getElementsByClassName('tries');
+
+        console.log(_heart[this.missed].innerHTML = '<img src="images/lostHeart.png>');
+        
+        console.log(this.missed += 1);
+
+            if (this.missed === 5) {
+                this.gameOver(false);
+            }        
+    }
     /**
      * Checks to see if letters entered match the hidden phases
      * @return {boolean} True if the players wins/false if player looses.
      */
-
     checkForWin() {
         //if(){}
     }
