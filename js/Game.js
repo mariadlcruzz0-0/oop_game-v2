@@ -24,6 +24,13 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
     /**
+     * Sets the game before it starts
+     */
+    resetGame() {
+        document.querySelector('ul').innerHTML = ' ';
+    }
+
+    /**
      * Selects random phrase from the phrases array
      */
     getRandomPhrase() {
@@ -40,39 +47,50 @@ class Game {
         if (matchedLetter) {
             button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(button.textContent);
-            this.checkForWin();
                 if (this.checkForWin()) {
                     this.gameOver(true);
                 } 
-        else {
-                    button.classList.add('Try Again');
+        } else {
+                    button.classList.add('wrong');
                     this.removeLife();
                 }
-        }
     }
     /**
      * Removes a heart if user guesses the wrong letter
      */
     removeLife() {
         const _heart = document.getElementsByClassName('tries');
-
-        console.log(_heart[this.missed].innerHTML = '<img src="images/lostHeart.png>');
-        
-        console.log(this.missed += 1);
-
-            if (this.missed === 5) {
-                this.gameOver(false);
-            }        
+        if (this.missed < 5) {
+            _heart[this.missed].innerHTML = '<img src="images/lostHeart.png"  alt="Heart Icon" height="35" width="30">';
+            this.missed += 1;
+        } else {
+            this.gameOver(false);
+        }   
     }
     /**
      * Checks to see if letters entered match the hidden phases
-     * @return {boolean} True if the players wins/false if player looses.
-     */
+     * @return {boolean} True if the players wins/false if there are letters left.
+     * */
     checkForWin() {
-        //if(){}
+        const _hide = document.getElementsByClassName('hide');
+        if(_hide.length === 0 ){
+            return true;
+        } else {
+            return false;
+        }
     }
     /**
      * Ends the game
      */
-    gameOver() {}
+    gameOver(win) {
+        document.getElementById('overlay').style.display = 'flex';
+
+        if(win) {
+            document.getElementById('overlay').className = 'win';
+            document.getElementById('game-over-message').innerHTML = 'You Won!';
+        } else {
+            document.getElementById('overlay').className = 'lose';
+            document.getElementById('game-over-message').innerHTML = 'Try again!'
+        }
+    }
 }
