@@ -78,7 +78,7 @@ class Game {
      */
     removeLife() {
         const _heart = document.getElementsByClassName('tries');
-        if (this.missed < 5) {
+        if (this.missed < 4) {
             _heart[this.missed].innerHTML = '<img src="images/lostHeart.png"  alt="Heart Icon" height="35" width="30">';
             this.missed += 1;
         } else {
