@@ -18,6 +18,7 @@ class Game {
      * Starts the game
      */
     startGame() {
+        this.resetGame();
         document.getElementById('overlay').style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         console.log(this.activePhrase);
@@ -27,22 +28,25 @@ class Game {
      * Resets the game before it starts
      */
     resetGame() {
-        const  ul = document.querySelector('ul').innerHTML = ' ';
-        const _keys = document.getElementById('keyrow');
-        const _lifeHeart = document.getElementsByClassName('tries');
-        
-        //resets keyboard
-        for (let i = 0; i < _keys.length; i++) {
-            _button[i].className = 'key';
-            _button[i].disabled = false;
+        //resets the li
+       const phrase = document.getElementById('phrase');
+       phrase.querySelector('ul').innerHTML = '';
+        //resets the life counts
+        this.missed = 0;
+        //reset the classes on the keys
+        const _qwerty = document.getElementById('qwerty');
+        const btn = _qwerty.getElementsByTagName('button');
+
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].disabled = false;
+            btn[i].classList.remove('chosen', 'wrong');
         }
         //resets hearts
-        for (let i = 0; _lifeHeart.length; i++) {
-            _lifeHeart[i].innerHTML = '<img src="images/liveHeart.png"  alt="Heart Icon" height="35" width="30">';
+        const tries = document.querySelectorAll('.tries img');
+        for (let i = 0; i < tries.length; i++) {
+            tries[i].src = 'images/liveHeart.png';
         }
-        while (ul.firstChild){
-            ul.removeChild(ul.firstChild);
-        }
+        this.missed = 0;
     }
     /**
      * Selects random phrase from the phrases array
