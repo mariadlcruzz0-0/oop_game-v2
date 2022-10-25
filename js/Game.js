@@ -24,12 +24,26 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
     /**
-     * Sets the game before it starts
+     * Resets the game before it starts
      */
     resetGame() {
-        document.querySelector('ul').innerHTML = ' ';
+        const  ul = document.querySelector('ul').innerHTML = ' ';
+        const _keys = document.getElementById('keyrow');
+        const _lifeHeart = document.getElementsByClassName('tries');
+        
+        //resets keyboard
+        for (let i = 0; i < _keys.length; i++) {
+            _button[i].className = 'key';
+            _button[i].disabled = false;
+        }
+        //resets hearts
+        for (let i = 0; _lifeHeart.length; i++) {
+            _lifeHeart[i].innerHTML = '<img src="images/liveHeart.png"  alt="Heart Icon" height="35" width="30">';
+        }
+        while (ul.firstChild){
+            ul.removeChild(ul.firstChild);
+        }
     }
-
     /**
      * Selects random phrase from the phrases array
      */
